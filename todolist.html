@@ -8,13 +8,13 @@
 
 <body>
 <div id="app">
-
+<!-- creating an To Do List webpage.  --->
     <h1>To Do List</h1>
 
     <h2>Enter new task</h2>
     <label>Enter a new To-Do task</label>
     <input v-model="newTask">
-
+<!-- creating an button for the add task section.  --->
     <br>
     <button v-on:click="addTask">Add Task</button>
 
@@ -40,7 +40,7 @@
 
             function addTask() {
                 if (newTask.value) {
-                    taskList.value.push(newTask.value)
+                    taskList.value.push(newTask.value) // this will add a new task into the webpage after typing. 
                     newTask.value = ''
                 }
             }
@@ -49,7 +49,7 @@
                 taskList,
                 newTask,
                 addTask,
-            }
+            }// this will return all the items above this comment. 
 
 
         }
