@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computed Shopping Cart</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="http://localhost:8098"></script>
+
+    <!-- this will give the webpage a bit more color.   -->
+    <style>
+        th,td {
+            width: 25%;
+            text-align: center;
+            background-color: darksalmon;
+
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="app">
+    <table>
+        <tr> <!-- this will provide the headers of the table.  -->
+            <th>Item</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+
+        <tr>
+            <td>{{ name }}</td> <!-- this will provide the data under the header.  -->
+            <td>{{ unitPrice  }}</td>
+            <td><input type="number" v-model="quantity"></td> <!-- using the v-model it will provide us with a scroll-wheel of numbers for the quantity part.   -->
+            <td>{{ total }}</td> <!-- this will spill out the total for hat(s)  -->
+        </tr>
+    </table>
+
+
+</div>
+
+<script>
+
+    const { createApp, ref, computed } = Vue
+
+    createApp({
+        setup() { // setting up the cart
+
+            const name = ref('Hat') // any item would work.
+            const quantity = ref(1)
+            const unitPrice = ref(4.99) // any starting number is fine for this case.
+
+            const total = computed( function () {
+                const totalPrice = quantity.value * unitPrice.value
+                const formattedPrice = totalPrice.toFixed(2);
+                return formattedPrice // this will return the price into 2 decimal places.
+            })
+
+
+
+            return {
+                name,
+                quantity,
+                unitPrice,
+                total,
+            }// this will return the name, quantity,unit price, and total on the webpage.
+
+
+        }
+
+    }).mount('#app')
+</script>
+
+
+
+
+
+</body>
+</html>

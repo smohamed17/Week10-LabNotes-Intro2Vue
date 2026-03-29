@@ -1,0 +1,26 @@
+The "total" was accessed during render, but is not defined on instance means that
+The code written either didn't return the 'total', the variable doesn't exist in the code itself, and/or v-on:click function doesn't exist in the code.
+You cannot ignore this code because it won't go away until you define the variable or return it to the setup section. (PowerPoint slide pg.43)
+
+cited work: https://stackoverflow.com/questions/76026812/vue-property-character-was-accessed-during-render-but-is-not-defined-on-inst (this is related to this issue and making sure that you've updated everything.)
+
+Vue Explanations:
+
+v-if = provides the opportunity for the element to conditionally render a block that returns a truthful value.
+
+v-else - will provide the else block for the v-if. Think of this like the if-statement and the else-statement on HTML code.
+else statement only happens if the first part of the v-if is false.
+
+using this code, this will give out the best description of what's going on with v-if and v-else.
+
+   function addExclamationPoints() {
+                if (numberOfExclamationPoints.value < 10) {
+                    numberOfExclamationPoints.value ++
+                }else{
+                    alert('No more than 10 exclamation points') // this will alert the user that they can't create any more exclamation points.
+                }
+            }
+
+then it will return the function afterward as a value.
+
+work cited: https://www.w3schools.com/vue/vue_v-if.php for the explanation. You can use just v-if alone, while v-else requires v-if to start up the conditional directive.

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="http://localhost:8098"></script>
+</head>
+
+<body>
+
+<div id="app"> <!-- this will manage the HTML and display the message.  -->
+    <h1>Hello Vue</h1>
+    <p>
+        {{ messageWithExclamationPoints }}
+    </p>
+    <!-- adding a button to the page to trigger the v-on and creating a clear button too!!!   -->
+    <button v-on:click="addExclamationPoints">Add Exclamations Points </button>
+    <button v-on:click="clearExclamationPoints">Clear Exclamation Points</button>
+</div>
+
+<script>
+// this is setting up the vue dev tools. The message contains the data within a box. REMINDER: Const cannot be changed through variables.
+    const { createApp, ref, computed } = Vue
+
+    createApp({
+        setup() {
+
+            const message = ref('hi')
+// turning this into a function and creating statements.
+
+            const numberOfExclamationPoints = ref(0)
+
+            function addExclamationPoints() {
+                if (numberOfExclamationPoints.value < 10) {
+                    numberOfExclamationPoints.value ++
+                }else{
+                    alert('No more than 10 exclamation points') // this will alert the user that they can't create any more exclamation points.
+                }
+            }
+
+            function clearExclamationPoints() {
+                numberOfExclamationPoints.value = 0
+            }
+
+
+            const messageWithExclamationPoints = computed( function() {
+                // this will start up the computed setup.
+                let computedMessage = message.value
+                for ( let x = 0; x < numberOfExclamationPoints.value; x++) { // creating different values together into one.
+                    computedMessage = computedMessage + '!'
+                }
+                return computedMessage // this will return the computed message.
+            })
+
+            return {
+                message,
+                messageWithExclamationPoints,
+                addExclamationPoints, // this will return to the exclamation point on the webpage.
+                numberOfExclamationPoints, // adding up to 10 exclamation points.
+                clearExclamationPoints  // this will clear the points.
+            }
+        }
+    }).mount('#app')
+
+</script>
+
+</body>
+</html>

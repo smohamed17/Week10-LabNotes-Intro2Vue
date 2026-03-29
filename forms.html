@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Vue Forms</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="http://localhost:8098"></script>
+</head>
+
+<body>
+<div id="app">
+    <label>Please enter your name:</label>
+    <input v-model="name"> <!-- this will appear on the dev tools as name. it is a two-way data binding input.-->
+
+    <p v-if="name"> Thanks, your name is {{ name }}</p> <!-- v-if will provide if a name is entered. you won't see anything if its blank. -->
+    <p v-else>Awaiting user input</p> <!-- v-else will add provide something else in its place of a v-if.  -->
+
+    <button v-on:click="clearName">Clear Name</button> <!-- clears the name.  -->
+
+
+</div>
+
+<script>
+
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+
+            const name = ref('') // keeping this empty for now.
+
+            function clearName() {
+                name.value = ''
+            } // this will clear the name on the webpage.
+
+            return {
+                name,
+                clearName,
+            } // this will return the two setups of this webpage.
+
+
+        }
+
+    }).mount('#app')
+</script>
+
+
+
+
+
+</body>
+</html>
